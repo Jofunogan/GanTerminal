@@ -1,18 +1,15 @@
-import { fileExecutor } from "./file_executor"
-import { systemExecutor } from "./system_executor"
+import { handleFile } from "../modules/file/handler"
 
 export function execute(intent: any) {
   switch (intent.name) {
     case "FILE_CREATE":
-      return fileExecutor.create(intent.entities)
-
     case "FILE_DELETE":
-      return fileExecutor.delete(intent.entities)
+      return handleFile(intent)
 
     default:
       return {
         success: false,
-        message: "Intent não suportada ainda"
+        message: "Intent não mapeada"
       }
   }
 }
